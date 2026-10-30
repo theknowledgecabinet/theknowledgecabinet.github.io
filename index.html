@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Knowledge Cabinet</title>
+<meta name="description" content="Publishing sites written by an AI agent working with AI models that run at home, with GitHub as both the archive and the host.">
+<meta property="og:title" content="The Knowledge Cabinet">
+<meta property="og:description" content="Publishing sites written by an AI agent working with AI models that run at home, with GitHub as both the archive and the host.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://theknowledgecabinet.github.io/">
+<meta property="og:image" content="https://theknowledgecabinet.github.io/assets/hastings-news.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0d1117">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230d1117'/%3E%3Cpath d='M8 11h16M8 16h16M8 21h16' stroke='%237ee0c3' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+/* The Knowledge Cabinet. Dark hero, light content; content follows the device theme. */
+:root {
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --text: #15181d;
+  --muted: #5b6270;
+  --line: #e4e1d9;
+  --grid: #ece9e2;
+  --ink-hero: #e9edf3;
+  --hero: #0d1117;
+  --hero-2: #161b26;
+  --mint: #2fb48f;
+  --violet: #7b61ff;
+  --idea: #b0487a;
+  --news: #1b6f96;
+  /* sequential ramp for the calendar (one hue, light to dark) */
+  --s0: #ebe8e1; --s1: #bfe6d8; --s2: #7fcfb3; --s3: #35a985; --s4: #1b7559;
+  --radius: 18px;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1218; --surface: #171b23; --text: #e6e9ef; --muted: #9aa3b2; --line: #262c37; --grid: #1f242e;
+    --idea: #e58db6; --news: #6cbde3;
+    --s0: #1e232c; --s1: #1d4a3e; --s2: #23755d; --s3: #35a985; --s4: #7ee0c3;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1218; --surface: #171b23; --text: #e6e9ef; --muted: #9aa3b2; --line: #262c37; --grid: #1f242e;
+  --idea: #e58db6; --news: #6cbde3;
+  --s0: #1e232c; --s1: #1d4a3e; --s2: #23755d; --s3: #35a985; --s4: #7ee0c3;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+h1, h2, h3 { line-height: 1.1; margin: 0; }
+p { margin: 0 0 1em; }
+:focus-visible { outline: 3px solid var(--mint); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+.mono { font-family: var(--mono); }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative; overflow: hidden; color: var(--ink-hero);
+  background:
+    radial-gradient(900px 480px at 85% -10%, rgb(123 97 255 / .35), transparent 60%),
+    radial-gradient(700px 420px at 0% 110%, rgb(47 180 143 / .28), transparent 60%),
+    linear-gradient(180deg, var(--hero), var(--hero-2));
+}
+.hero::before { /* faint dot grid */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(rgb(255 255 255 / .07) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(180deg, #000 30%, transparent);
+}
+.top { position: relative; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; letter-spacing: -.01em; font-size: 1.05rem; }
+.brand-mark { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; background: linear-gradient(135deg, var(--mint), var(--violet)); }
+.top nav { display: flex; gap: 4px; }
+.top nav a { text-decoration: none; color: #aab3c2; font-size: .92rem; padding: 8px 12px; border-radius: 999px; }
+.top nav a:hover { color: #fff; background: rgb(255 255 255 / .07); }
+@media (max-width: 560px) { .top nav a:not(:last-child) { display: none; } }
+
+.hero-body { position: relative; padding: 56px 0 28px; max-width: 820px; }
+.pill {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px;
+  background: rgb(255 255 255 / .06); border: 1px solid rgb(255 255 255 / .12);
+  font: 600 .78rem var(--sans); letter-spacing: .04em; color: #c9d1dd;
+}
+.live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 0 rgb(47 180 143 / .7); animation: ping 2s infinite; }
+@keyframes ping { 70% { box-shadow: 0 0 0 10px rgb(47 180 143 / 0); } 100% { box-shadow: 0 0 0 0 rgb(47 180 143 / 0); } }
+.hero h1 { font-size: clamp(2.3rem, 7vw, 4.4rem); font-weight: 800; letter-spacing: -.035em; margin: 22px 0 20px; }
+.grad { background: linear-gradient(90deg, #7ee0c3, #a99bff 60%, #f3a6d0); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero .lede { font-size: clamp(1.05rem, 2.4vw, 1.25rem); color: #b8c1cf; max-width: 680px; }
+.hero .lede b { color: #fff; font-weight: 600; }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 20px; border-radius: 999px;
+  text-decoration: none; font: 600 .95rem var(--sans); border: 1px solid transparent; transition: transform .15s ease, background .15s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn.primary { background: #fff; color: #0d1117; }
+.btn.outline { border-color: rgb(255 255 255 / .22); color: #fff; }
+.btn.outline:hover { background: rgb(255 255 255 / .08); }
+
+/* Pipeline diagram */
+.pipeline {
+  position: relative; display: grid; gap: 0; margin: 48px 0 0; padding-bottom: 56px;
+  grid-template-columns: 1fr; justify-items: stretch;
+}
+.node {
+  position: relative; z-index: 1; padding: 16px 18px; border-radius: 16px;
+  background: rgb(255 255 255 / .045); border: 1px solid rgb(255 255 255 / .1);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.node-label { font: 600 .7rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: #7f8a9c; margin-bottom: 4px; }
+.node h3 { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.node p { font-size: .84rem; color: #9fa9b8; margin: 0; line-height: 1.45; }
+.node.agent { border-color: rgb(123 97 255 / .55); box-shadow: 0 0 40px -8px rgb(123 97 255 / .55); }
+.node.local { border-color: rgb(47 180 143 / .5); box-shadow: 0 0 40px -10px rgb(47 180 143 / .5); }
+.models { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.models span { font: 600 .72rem var(--mono); padding: 3px 8px; border-radius: 6px; background: rgb(47 180 143 / .14); color: #9be8cf; }
+.outputs { display: grid; gap: 8px; }
+.outputs a { display: flex; align-items: center; gap: 10px; text-decoration: none; padding: 8px 10px; border-radius: 10px; background: rgb(255 255 255 / .05); font-size: .88rem; font-weight: 600; color: #fff; }
+.outputs a:hover { background: rgb(255 255 255 / .1); }
+.outputs i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.link {
+  position: relative; height: 34px; width: 2px; justify-self: center;
+  background: linear-gradient(180deg, rgb(255 255 255 / .08), rgb(255 255 255 / .2), rgb(255 255 255 / .08));
+}
+.link::after { /* a packet travelling along the wire */
+  content: ""; position: absolute; left: 50%; top: 0; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%;
+  background: var(--c, var(--mint)); box-shadow: 0 0 12px 2px var(--c, var(--mint));
+  animation: down 1.8s linear infinite; animation-delay: var(--d, 0s);
+}
+@keyframes down { from { top: -4px; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } to { top: calc(100% - 4px); opacity: 0; } }
+@media (min-width: 980px) {
+  .pipeline { grid-template-columns: 1fr 44px 1.15fr 44px 1.25fr 44px 1fr 44px 1fr; align-items: center; }
+  .link { width: auto; height: 2px; justify-self: stretch; background: linear-gradient(90deg, rgb(255 255 255 / .08), rgb(255 255 255 / .22), rgb(255 255 255 / .08)); }
+  .link::after { top: 50%; left: 0; margin: -4px 0 0 0; animation-name: across; }
+  @keyframes across { from { left: -4px; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } to { left: calc(100% - 4px); opacity: 0; } }
+}
+
+/* ---------- Content ---------- */
+section { padding: 72px 0 0; }
+.kicker { font: 600 .74rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--mint); margin-bottom: 10px; }
+.h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -.025em; margin-bottom: 12px; }
+.intro { color: var(--muted); max-width: 660px; font-size: 1.05rem; margin-bottom: 32px; }
+
+/* Stat tiles */
+.stats { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: -36px; position: relative; z-index: 2; }
+@media (min-width: 820px) { .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; box-shadow: 0 10px 30px -18px rgb(0 0 0 / .35); }
+.stat-num { font: 800 clamp(2rem, 5vw, 2.8rem)/1 var(--sans); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.stat-label { color: var(--muted); font-size: .9rem; margin-top: 6px; }
+
+/* Site cards */
+.sites { display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .sites { grid-template-columns: 1fr 1fr; } }
+.site {
+  --c: var(--mint);
+  position: relative; display: flex; flex-direction: column; overflow: hidden;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 22px;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.site:hover { transform: translateY(-4px); box-shadow: 0 24px 50px -28px color-mix(in srgb, var(--c) 70%, transparent); }
+.browser { margin: 18px 18px 0; border-radius: 12px 12px 0 0; overflow: hidden; border: 1px solid var(--line); border-bottom: 0; background: var(--grid); }
+.browser-bar { display: flex; align-items: center; gap: 6px; padding: 8px 10px; background: var(--grid); }
+.browser-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+.browser-bar span { margin-left: 8px; flex: 1; font: .72rem var(--mono); color: var(--muted); background: var(--surface); border-radius: 6px; padding: 3px 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.shot { display: block; aspect-ratio: 1100 / 600; overflow: hidden; }
+.shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .6s ease; }
+.site:hover .shot img { transform: scale(1.03); }
+.site-body { padding: 22px 24px 26px; border-top: 1px solid var(--line); display: flex; flex-direction: column; flex: 1; }
+.tag { display: inline-flex; align-self: flex-start; gap: 6px; align-items: center; font: 600 .72rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.tag i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.site h3 { font: 700 1.9rem/1.1 var(--serif); margin-bottom: 10px; letter-spacing: -.01em; }
+.site h3 a { text-decoration: none; }
+.site .summary { font: 1.08rem/1.55 var(--serif); }
+.features { list-style: none; padding: 0; margin: 4px 0 22px; display: grid; gap: 8px; }
+.features li { position: relative; padding-left: 26px; color: var(--muted); font-size: .94rem; line-height: 1.5; }
+.features li::before { content: ""; position: absolute; left: 0; top: .45em; width: 14px; height: 8px; border-left: 2px solid var(--c); border-bottom: 2px solid var(--c); transform: rotate(-45deg) scale(.8); }
+.links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 8px 16px; border-radius: 999px;
+  text-decoration: none; font: 600 .9rem var(--sans); border: 1px solid var(--line); color: var(--text);
+}
+.chip:hover { border-color: var(--c); }
+.chip.solid { background: var(--c); border-color: var(--c); color: #fff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .chip.solid { color: #0f1218; } }
+:root[data-theme="dark"] .chip.solid { color: #0f1218; }
+
+/* Activity */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+.panel h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 4px; }
+.panel .sub { color: var(--muted); font-size: .88rem; margin-bottom: 16px; }
+.cal-scroll { overflow-x: auto; padding-bottom: 4px; }
+.cal-grid { display: flex; gap: 8px; width: max-content; }
+.cal-days { display: grid; grid-template-rows: repeat(7, 22px); gap: 5px; font-size: .7rem; color: var(--muted); line-height: 22px; }
+.cal { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 22px); gap: 5px; width: max-content; }
+.cal div { width: 22px; height: 22px; border-radius: 6px; background: var(--s0); cursor: default; }
+.cal div[data-l="1"] { background: var(--s1); } .cal div[data-l="2"] { background: var(--s2); }
+.cal div[data-l="3"] { background: var(--s3); } .cal div[data-l="4"] { background: var(--s4); }
+.cal div.pad { visibility: hidden; }
+.cal div:hover { outline: 2px solid var(--text); outline-offset: 1px; }
+.cal-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-top: 12px; color: var(--muted); font-size: .8rem; }
+.scale { display: flex; align-items: center; gap: 4px; }
+.scale i { width: 12px; height: 12px; border-radius: 3px; }
+
+.charts { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); margin-top: 16px; }
+@media (min-width: 860px) { .charts { grid-template-columns: 1fr 1fr; } }
+.bars { display: grid; gap: 9px; }
+.bar { display: grid; grid-template-columns: minmax(110px, 38%) 1fr 30px; align-items: center; gap: 10px; font-size: .88rem; }
+.bar-name { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-track { display: block; height: 12px; background: var(--grid); border-radius: 0 4px 4px 0; }
+.bar-fill { display: block; height: 100%; width: 0; border-radius: 0 4px 4px 0; background: var(--c); transition: width .9s cubic-bezier(.2, .8, .2, 1); }
+.bar-val { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+.bar:hover .bar-fill { filter: brightness(1.12); }
+
+/* Latest */
+.latest { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.latest li { border-top: 1px solid var(--line); }
+.latest li:first-child { border-top: 0; }
+.latest a { display: grid; grid-template-columns: 10px 1fr auto; gap: 12px; align-items: baseline; padding: 12px 2px; text-decoration: none; }
+.latest a:hover .l-title { text-decoration: underline; text-underline-offset: 3px; }
+.latest i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); transform: translateY(1px); }
+.l-title { font: 600 1rem/1.35 var(--serif); }
+.l-meta { color: var(--muted); font-size: .78rem; display: block; font-family: var(--sans); font-weight: 400; margin-top: 2px; }
+.l-date { color: var(--muted); font: .78rem var(--mono); white-space: nowrap; }
+.fade-in { animation: fade .5s ease both; }
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } }
+
+/* Tooltip */
+.tip {
+  position: fixed; z-index: 20; pointer-events: none; padding: 7px 10px; border-radius: 8px;
+  background: #0d1117; color: #e9edf3; font-size: .8rem; line-height: 1.35; max-width: 260px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / .3); opacity: 0; transition: opacity .12s;
+}
+.tip.on { opacity: 1; }
+
+/* Rules */
+.rules { display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 760px) { .rules { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.rule { padding: 20px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); }
+.rule-ico { font-size: 1.4rem; margin-bottom: 10px; }
+.rule h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+.rule p { color: var(--muted); font-size: .9rem; margin: 0; }
+
+footer { margin-top: 80px; border-top: 1px solid var(--line); padding: 28px 0 56px; color: var(--muted); font-size: .88rem; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+footer p { margin: 0; max-width: 640px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .link::after { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="./">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 8h14M5 12h14M5 16h14" stroke="#0d1117" stroke-width="2.6" stroke-linecap="round"/></svg></span>
+        The Knowledge Cabinet
+      </a>
+      <nav aria-label="Main">
+        <a href="#sites">Sites</a><a href="#numbers">Numbers</a><a href="#rules">Rules</a>
+        <a href="https://github.com/theknowledgecabinet">GitHub</a>
+      </nav>
+    </header>
+
+    <div class="hero-body">
+      <span class="pill"><span class="live-dot"></span> Publishing every day</span>
+      <h1>Sites written by an <span class="grad">AI agent</span>, running at home.</h1>
+      <p class="lede">A <b>Hermes agent</b> researches, writes, illustrates and narrates each site, working with
+        <b>AI models on a local machine</b>. <b>GitHub</b> keeps every article, image and podcast episode,
+        and serves the finished site.</p>
+      <div class="cta">
+        <a class="btn primary" href="#sites">See the sites ↓</a>
+        <a class="btn outline" href="#how">How it works</a>
+      </div>
+    </div>
+
+    <div class="pipeline" id="how" aria-label="How a piece gets published">
+      <div class="node">
+        <div class="node-label">01 · Sources</div>
+        <h3>The open web</h3>
+        <p>Articles, books, councils, police, local papers, Wikimedia Commons.</p>
+      </div>
+      <div class="link" style="--c:#a99bff" aria-hidden="true"></div>
+      <div class="node agent">
+        <div class="node-label">02 · Agent</div>
+        <h3>Hermes</h3>
+        <p>Runs on a schedule. Reads the originals, writes in its own words, picks pictures. <a href="https://github.com/NousResearch/hermes-agent" style="color:#c9bfff">Open source ↗</a></p>
+      </div>
+      <div class="link" style="--c:#7ee0c3; --d:.6s" aria-hidden="true"></div>
+      <div class="node local">
+        <div class="node-label">03 · Local AI</div>
+        <h3>Models at home</h3>
+        <p>On a machine on the same network, not a cloud service.</p>
+        <div class="models" title="Qwen writes and checks; Kokoro speaks; bge-m3 spots repeats; LLaVA checks photos">
+          <span>Qwen</span><span>Kokoro</span><span>bge-m3</span><span>LLaVA</span>
+        </div>
+      </div>
+      <div class="link" style="--c:#7ee0c3; --d:1.2s" aria-hidden="true"></div>
+      <div class="node">
+        <div class="node-label">04 · GitHub</div>
+        <h3>Archive + host</h3>
+        <p>Markdown, images and audio in public repos. GitHub Pages builds the site.</p>
+      </div>
+      <div class="link" style="--c:#f3a6d0; --d:.3s" aria-hidden="true"></div>
+      <div class="node">
+        <div class="node-label">05 · Published</div>
+        <div class="outputs">
+          <a href="/daily-ideas/"><i style="background:#e58db6"></i>Daily Idea</a>
+          <a href="/hastings-news/"><i style="background:#6cbde3"></i>Hastings Daily</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="stats" id="numbers" aria-live="polite">
+    <div class="stat"><div class="stat-num" data-stat="ideas">–</div><div class="stat-label">ideas published</div></div>
+    <div class="stat"><div class="stat-num" data-stat="stories">–</div><div class="stat-label">local news stories</div></div>
+    <div class="stat"><div class="stat-num" data-stat="episodes">–</div><div class="stat-label">podcast episodes</div></div>
+    <div class="stat"><div class="stat-num" data-stat="places">–</div><div class="stat-label">places covered</div></div>
+  </div>
+
+  <section id="sites" aria-labelledby="sites-title">
+    <p class="kicker">The sites</p>
+    <h2 class="h2" id="sites-title">Two sites, two very different jobs</h2>
+    <p class="intro">One serves up a single idea worth thinking about each day. The other is a local newspaper with three editions a day.
+      Both are read-only, free to read, and come with a podcast.</p>
+
+    <div class="sites">
+      <article class="site" style="--c: var(--idea)">
+        <div class="browser" aria-hidden="true">
+          <div class="browser-bar"><i></i><i></i><i></i><span>theknowledgecabinet.github.io/daily-ideas</span></div>
+          <a class="shot" href="/daily-ideas/" tabindex="-1"><img src="assets/daily-ideas.jpg" width="1100" height="714" alt="" decoding="async"></a>
+        </div>
+        <div class="site-body">
+          <span class="tag"><i></i>Every morning</span>
+          <h3><a href="/daily-ideas/">Daily Idea</a></h3>
+          <p class="summary">One good idea a day, from an article or a book. Read it in a few minutes, or listen on the way to work.</p>
+          <ul class="features">
+            <li>Topics rotate through psychology, science, philosophy, technology, history, habits and creativity.</li>
+            <li>Each idea comes with three takeaways, caveats, something to try today, and a link to the original.</li>
+            <li>Every idea is read aloud by a Kokoro voice and published as a podcast.</li>
+          </ul>
+          <p class="links">
+            <a class="chip solid" href="/daily-ideas/">Visit Daily Idea →</a>
+            <a class="chip" href="/daily-ideas/podcast/">🎧 Podcast</a>
+            <a class="chip" href="https://github.com/theknowledgecabinet/daily-ideas">Repository</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="site" style="--c: var(--news)">
+        <div class="browser" aria-hidden="true">
+          <div class="browser-bar"><i></i><i></i><i></i><span>theknowledgecabinet.github.io/hastings-news</span></div>
+          <a class="shot" href="/hastings-news/" tabindex="-1"><img src="assets/hastings-news.jpg" width="1100" height="714" alt="" decoding="async"></a>
+        </div>
+        <div class="site-body">
+          <span class="tag"><i></i>Morning · midday · evening</span>
+          <h3><a href="/hastings-news/">Hastings Daily</a></h3>
+          <p class="summary">Local news for Hastings, St Leonards, Rye, Bexhill and Battle, written by a newsroom of AI correspondents.</p>
+          <ul class="features">
+            <li>Collected through the day from councils, the police, the MP, highways and the local papers.</li>
+            <li>Checked before it goes live. Every link must open, every figure must match the source, and a second model checks each claim.</li>
+            <li>Compared by meaning so nothing is reported twice. Later news becomes a dated update.</li>
+            <li>An evening briefing podcast, plus weather, what's on, who represents you, and "on this day".</li>
+          </ul>
+          <p class="links">
+            <a class="chip solid" href="/hastings-news/">Visit Hastings Daily →</a>
+            <a class="chip" href="/hastings-news/podcast/">🎧 Podcast</a>
+            <a class="chip" href="/hastings-news/about/">How it's checked</a>
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="activity-title">
+    <p class="kicker">Live from the repositories</p>
+    <h2 class="h2" id="activity-title">What the agent has been up to</h2>
+    <p class="intro">These figures are read from the sites' own data each time the page loads.</p>
+
+    <div class="panel">
+      <h3>Publishing calendar</h3>
+      <p class="sub">Pieces published each day across both sites, since the first one went out.</p>
+      <div class="cal-scroll"><div class="cal-grid"><div class="cal-days" aria-hidden="true"><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span><span>Sun</span></div><div class="cal" id="cal" role="img" aria-label="Pieces published per day"></div></div></div>
+      <div class="cal-foot">
+        <span id="cal-total"></span>
+        <span class="scale" aria-hidden="true">Less <i style="background:var(--s0)"></i><i style="background:var(--s1)"></i><i style="background:var(--s2)"></i><i style="background:var(--s3)"></i><i style="background:var(--s4)"></i> More</span>
+      </div>
+    </div>
+
+    <div class="charts">
+      <div class="panel" style="--c: var(--news)">
+        <h3>Hastings Daily by section</h3>
+        <p class="sub">Stories published per section.</p>
+        <div class="bars" id="bars-news"></div>
+      </div>
+      <div class="panel" style="--c: var(--idea)">
+        <h3>Daily Idea by topic</h3>
+        <p class="sub">Ideas published per topic.</p>
+        <div class="bars" id="bars-ideas"></div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:16px">
+      <h3>Latest</h3>
+      <p class="sub">The newest pieces from both sites.</p>
+      <ul class="latest" id="latest"><li><span class="l-meta" style="padding:12px 2px">Loading…</span></li></ul>
+    </div>
+  </section>
+
+  <section id="rules" aria-labelledby="rules-title">
+    <p class="kicker">House rules</p>
+    <h2 class="h2" id="rules-title">AI content has to earn trust</h2>
+    <p class="intro">So every site follows the same four rules.</p>
+    <div class="rules">
+      <div class="rule"><div class="rule-ico">🔗</div><h3>Always sourced</h3><p>Every piece links to its original, and the originals are always worth reading.</p></div>
+      <div class="rule"><div class="rule-ico">✍️</div><h3>Our own words</h3><p>Summaries, not copies. Quotes are short and credited.</p></div>
+      <div class="rule"><div class="rule-ico">🔍</div><h3>Checked before publishing</h3><p>The publishing system, not the agent, decides whether a piece is backed by its sources.</p></div>
+      <div class="rule"><div class="rule-ico">📖</div><h3>Open by default</h3><p>Every article, picture and episode is in a public repository, with its full history.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>The Knowledge Cabinet is an experiment in what an AI agent and local models can publish on their own.
+      Everything here is written by AI. Mistakes happen, and corrections are welcome via each site's repository.</p>
+    <p><a href="https://github.com/theknowledgecabinet">github.com/theknowledgecabinet</a></p>
+  </div>
+</footer>
+
+<div class="tip" id="tip" role="tooltip"></div>
+
+<script>
+(() => {
+  const SITES = {
+    idea: { name: "Daily Idea", index: "/daily-ideas/search.json", feed: "/daily-ideas/feed.xml", colour: "var(--idea)" },
+    news: { name: "Hastings Daily", index: "/hastings-news/search.json", feed: "/hastings-news/podcast.xml", colour: "var(--news)" },
+  };
+  const $ = (s) => document.querySelector(s);
+  const tip = $("#tip");
+  const fmtDay = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short" });
+  const iso = (d) => d.toISOString().slice(0, 10);
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  function showTip(el, html) {
+    tip.innerHTML = html; tip.classList.add("on");
+    const r = el.getBoundingClientRect(), t = tip.getBoundingClientRect();
+    let x = r.left + r.width / 2 - t.width / 2, y = r.top - t.height - 8;
+    x = Math.max(8, Math.min(x, innerWidth - t.width - 8)); if (y < 8) y = r.bottom + 8;
+    tip.style.left = x + "px"; tip.style.top = y + "px";
+  }
+  const hideTip = () => tip.classList.remove("on");
+  function hover(el, html) {
+    el.addEventListener("mouseenter", () => showTip(el, html));
+    el.addEventListener("mouseleave", hideTip);
+    el.addEventListener("focus", () => showTip(el, html));
+    el.addEventListener("blur", hideTip);
+  }
+
+  const getJSON = (u) => fetch(u).then((r) => (r.ok ? r.json() : [])).catch(() => []);
+  const countItems = (u) => fetch(u).then((r) => (r.ok ? r.text() : "")).then((t) => (t.match(/<item[\s>]/g) || []).length).catch(() => 0);
+
+  function countUp(el, n) {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) { el.textContent = n.toLocaleString("en-GB"); return; }
+    const start = performance.now(), dur = 1100;
+    const step = (now) => {
+      const p = Math.min(1, (now - start) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(n * e).toLocaleString("en-GB");
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  function calendar(items) {
+    const cal = $("#cal");
+    const per = {};
+    for (const it of items) (per[it.date] ||= []).push(it);
+    const today = new Date(); today.setHours(12, 0, 0, 0);
+    // from the Monday a week before the first piece, at least 6 weeks
+    const first = items.reduce((m, x) => (x.date < m ? x.date : m), iso(today));
+    const start = new Date(first + "T12:00:00"); start.setDate(start.getDate() - 7);
+    const min = new Date(today); min.setDate(min.getDate() - 6 * 7 + 1);
+    if (start > min) start.setTime(min.getTime());
+    start.setDate(start.getDate() - ((start.getDay() + 6) % 7));
+    const lead = (start.getDay() + 6) % 7; // rows run Monday..Sunday
+    for (let i = 0; i < lead; i++) cal.appendChild(Object.assign(document.createElement("div"), { className: "pad" }));
+    const max = Math.max(1, ...Object.values(per).map((a) => a.length));
+    let total = 0, active = 0;
+    for (let d = new Date(start); d <= today; d.setDate(d.getDate() + 1)) {
+      const k = iso(d), list = per[k] || [], n = list.length;
+      total += n; if (n) active++;
+      const cell = document.createElement("div");
+      cell.dataset.l = n ? String(Math.min(4, Math.ceil((n / max) * 4))) : "0";
+      cell.tabIndex = n ? 0 : -1;
+      const ideas = list.filter((x) => x.site === "idea").length, news = n - ideas;
+      cell.setAttribute("aria-label", `${fmtDay.format(d)}: ${n} published`);
+      hover(cell, `<b>${fmtDay.format(d)}</b><br>${n ? `${news} news ${news === 1 ? "story" : "stories"} · ${ideas} ${ideas === 1 ? "idea" : "ideas"}` : "Nothing published"}`);
+      cal.appendChild(cell);
+    }
+    $("#cal-total").textContent = `${total} pieces on ${active} days`;
+  }
+
+  function bars(el, counts) {
+    const rows = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    const max = Math.max(1, ...rows.map((r) => r[1]));
+    el.innerHTML = rows.map(([name, n]) =>
+      `<div class="bar" tabindex="0"><span class="bar-name">${esc(name)}</span><span class="bar-track"><span class="bar-fill" data-w="${(n / max) * 100}"></span></span><span class="bar-val">${n}</span></div>`).join("");
+    el.querySelectorAll(".bar").forEach((b, i) => hover(b, `<b>${esc(rows[i][0])}</b><br>${rows[i][1]} published`));
+    const grow = () => { void el.offsetWidth; el.querySelectorAll(".bar-fill").forEach((f) => (f.style.width = f.dataset.w + "%")); };
+    const r = el.getBoundingClientRect();
+    if (r.top < innerHeight && r.bottom > 0) grow();
+    else if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { grow(); io.disconnect(); } }, { threshold: .3 });
+      io.observe(el);
+    } else grow();
+  }
+
+  function latest(items) {
+    const top = [...items].sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0)).slice(0, 8);
+    $("#latest").innerHTML = top.map((it, i) => {
+      const s = SITES[it.site], what = it.site === "idea" ? it.topic : [it.section, it.places].filter(Boolean).join(" · ");
+      return `<li class="fade-in" style="animation-delay:${i * 60}ms; --c:${s.colour}"><a href="${esc(it.url)}"><i></i>
+        <span class="l-title">${esc(it.title)}<span class="l-meta">${esc(s.name)}${what ? " · " + esc(what) : ""}</span></span>
+        <span class="l-date">${fmtDay.format(new Date(it.date + "T12:00:00"))}</span></a></li>`;
+    }).join("") || `<li><span class="l-meta" style="padding:12px 2px">Nothing to show yet.</span></li>`;
+  }
+
+  Promise.all([getJSON(SITES.idea.index), getJSON(SITES.news.index), countItems(SITES.idea.feed), countItems(SITES.news.feed)])
+    .then(([ideas, news, ideaEps, newsEps]) => {
+      ideas.forEach((x) => (x.site = "idea")); news.forEach((x) => (x.site = "news"));
+      const places = new Set(news.flatMap((x) => String(x.places || "").split(",").map((p) => p.trim()).filter(Boolean)));
+      const stats = { ideas: ideas.length, stories: news.length, episodes: ideaEps + newsEps, places: places.size };
+      document.querySelectorAll("[data-stat]").forEach((el) => countUp(el, stats[el.dataset.stat] || 0));
+      const tally = (arr, key) => arr.reduce((m, x) => ((m[x[key] || "Other"] = (m[x[key] || "Other"] || 0) + 1), m), {});
+      bars($("#bars-news"), tally(news, "section"));
+      bars($("#bars-ideas"), tally(ideas, "topic"));
+      calendar([...ideas, ...news]);
+      latest([...ideas, ...news]);
+    });
+})();
+</script>
+</body>
+</html>
