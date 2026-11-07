@@ -64,6 +64,9 @@ p { margin: 0 0 1em; }
 @media (max-width: 560px) { .strip nav a:not(:last-child) { display: none; } }
 .masthead { padding-top: 48px; }
 .masthead h1 { font-size: clamp(2.6rem, 8vw, 5rem); letter-spacing: -.02em; }
+.brandline { display: flex; align-items: center; gap: clamp(14px, 3vw, 26px); }
+.brandline .logo { width: clamp(64px, 11vw, 112px); height: auto; border-radius: 50%; flex: none;
+  box-shadow: 0 0 0 1px var(--line), 0 6px 18px rgb(31 58 95 / .18); }
 .masthead .tagline { font: italic 400 clamp(1.15rem, 2.6vw, 1.5rem)/1.4 var(--serif); color: var(--muted); margin: 10px 0 0; }
 .double { border: 0; border-top: 3px double var(--rule); margin: 28px 0 0; }
 .lede { font: 400 clamp(1.1rem, 2.2vw, 1.3rem)/1.6 var(--serif); margin: 24px 0 0; }
@@ -199,7 +202,10 @@ footer p { margin: 0; }
 </div>
 
 <header class="wrap masthead">
-  <h1>The Knowledge Cabinet</h1>
+  <div class="brandline">
+    <img class="logo" src="assets/logo-512.png" width="512" height="512" alt="">
+    <h1>The Knowledge Cabinet</h1>
+  </div>
   <p class="tagline">Sites written by an AI agent, running at home.</p>
   <hr class="double">
   <p class="lede">A <b>Hermes agent</b> researches, writes, illustrates and narrates each site, working with
