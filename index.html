@@ -13,7 +13,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#15171b" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231f3a5f'/%3E%3Cpath d='M8 11h16M8 16h16M8 21h16' stroke='%23f7f4ec' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="assets/logo-192.png">
+<link rel="apple-touch-icon" href="assets/logo-192.png">
 <style>
 /* The Knowledge Cabinet. Editorial: paper, ink, serif headlines, thin rules. */
 :root {
@@ -26,6 +27,7 @@
   --ink: #1f3a5f;
   --idea: #a3446f;
   --news: #1b5e7e;
+  --view: #7a5fc0;
   /* calendar ramp: one hue, light to dark */
   --s0: #ebe6da; --s1: #c9d3e0; --s2: #93a9c6; --s3: #557aa3; --s4: #1f3a5f;
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
@@ -34,13 +36,13 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #15171b; --surface: #1c1f24; --text: #e8e5df; --muted: #a0a6ae; --line: #30343b; --rule: #e8e5df;
-    --ink: #a9c1e2; --idea: #e290b6; --news: #79bde0;
+    --ink: #a9c1e2; --idea: #e290b6; --news: #79bde0; --view: #c3b1ff;
     --s0: #23262c; --s1: #2b3a4f; --s2: #3e5f86; --s3: #6f93bf; --s4: #b5cbe6;
   }
 }
 :root[data-theme="dark"] {
   --bg: #15171b; --surface: #1c1f24; --text: #e8e5df; --muted: #a0a6ae; --line: #30343b; --rule: #e8e5df;
-  --ink: #a9c1e2; --idea: #e290b6; --news: #79bde0;
+  --ink: #a9c1e2; --idea: #e290b6; --news: #79bde0; --view: #c3b1ff;
   --s0: #23262c; --s1: #2b3a4f; --s2: #3e5f86; --s3: #6f93bf; --s4: #b5cbe6;
 }
 *, *::before, *::after { box-sizing: border-box; }
@@ -214,7 +216,7 @@ footer p { margin: 0; }
     <li><span class="num">4</span><span class="label">GitHub</span><h3>Archive and host</h3>
       <p>Markdown, images and audio in public repositories. GitHub Pages builds the site.</p></li>
     <li><span class="num">5</span><span class="label">Published</span><h3>Read or listen</h3>
-      <p><a href="/daily-ideas/">Daily Idea</a> and <a href="/hastings-news/">Hastings Daily</a>, each with a podcast.</p></li>
+      <p><a href="/daily-ideas/">Daily Idea</a>, <a href="/hastings-news/">Hastings Daily</a> and <a href="/long-view/">The Long View</a>, each with a podcast.</p></li>
   </ol>
 </header>
 
@@ -229,8 +231,8 @@ footer p { margin: 0; }
   <section id="sites" aria-labelledby="sites-title">
     <div class="section-head">
       <span class="label">The sites</span>
-      <h2 id="sites-title">Two sites, two very different jobs</h2>
-      <p>One serves up a single idea worth thinking about each day. The other is a local newspaper with three editions a day. Both are read-only, free to read, and come with a podcast.</p>
+      <h2 id="sites-title">Three sites, three very different jobs</h2>
+      <p>One serves up a single idea worth thinking about each morning. One is a local newspaper with three editions a day. And one is a calm evening lesson in the ideas that hold societies together. All are free to read, and all come with a podcast.</p>
     </div>
 
     <div class="sites">
@@ -268,6 +270,24 @@ footer p { margin: 0; }
           <a class="textlink" href="/hastings-news/about/">How it's checked</a>
         </p>
       </article>
+
+      <article class="site" style="--c: var(--view)">
+        <a class="shot" href="/long-view/" tabindex="-1" aria-hidden="true"><img src="assets/long-view.jpg" width="1100" height="714" alt="" decoding="async"></a>
+        <span class="label">Every evening</span>
+        <h3><a href="/long-view/">The Long View</a></h3>
+        <p class="summary">A calm five minutes with a big idea: the thinkers who help us understand how people live together, told with warmth.</p>
+        <ul class="features">
+          <li>Anchored on the essayist Lee Harris, widening out to Ibn Khaldun, Tocqueville, Arendt, Popper and more.</li>
+          <li>A different kind of edition each weekday: an essay, a classic, a modern thinker, one idea explained, another angle, something lighter, and Sunday's week in one page.</li>
+          <li>Every edition is written from a reading the agent fetched, and checked against that text by a local model before it goes out.</li>
+          <li>Read aloud in a gentle British voice and published as a podcast.</li>
+        </ul>
+        <p class="links">
+          <a class="button" href="/long-view/">Visit The Long View</a>
+          <a class="textlink" href="/long-view/podcast/">Podcast</a>
+          <a class="textlink" href="/long-view/about/">How it's made</a>
+        </p>
+      </article>
     </div>
   </section>
 
@@ -280,7 +300,7 @@ footer p { margin: 0; }
 
     <div class="panel">
       <h3>Publishing calendar</h3>
-      <p class="sub">Pieces published each day across both sites, since the first one went out.</p>
+      <p class="sub">Pieces published each day across all three sites, since the first one went out.</p>
       <div class="cal-scroll"><div class="cal-grid"><div class="cal-days" aria-hidden="true"><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span><span>Sun</span></div><div class="cal" id="cal" role="img" aria-label="Pieces published per day"></div></div></div>
       <div class="cal-foot">
         <span id="cal-total"></span>
@@ -303,7 +323,7 @@ footer p { margin: 0; }
 
     <div class="panel">
       <h3>Latest</h3>
-      <p class="sub">The newest pieces from both sites.</p>
+      <p class="sub">The newest pieces from all three sites.</p>
       <ul class="latest" id="latest"><li><span class="l-date">Loading…</span></li></ul>
     </div>
   </section>
@@ -338,6 +358,7 @@ footer p { margin: 0; }
   const SITES = {
     idea: { name: "Daily Idea", index: "/daily-ideas/search.json", feed: "/daily-ideas/feed.xml", colour: "var(--idea)" },
     news: { name: "Hastings Daily", index: "/hastings-news/search.json", feed: "/hastings-news/podcast.xml", colour: "var(--news)" },
+    view: { name: "The Long View", index: "/long-view/search.json", feed: "/long-view/feed.xml", colour: "var(--view)" },
   };
   const $ = (s) => document.querySelector(s);
   const tip = $("#tip");
@@ -387,9 +408,9 @@ footer p { margin: 0; }
       const cell = document.createElement("div");
       cell.dataset.l = n ? String(Math.min(4, Math.ceil((n / max) * 4))) : "0";
       cell.tabIndex = n ? 0 : -1;
-      const ideas = list.filter((x) => x.site === "idea").length, news = n - ideas;
+      const ideas = list.filter((x) => x.site === "idea").length, views = list.filter((x) => x.site === "view").length, news = n - ideas - views;
       cell.setAttribute("aria-label", `${fmtDay.format(d)}: ${n} published`);
-      hover(cell, `<b>${fmtDay.format(d)}</b><br>${n ? `${news} news ${news === 1 ? "story" : "stories"} · ${ideas} ${ideas === 1 ? "idea" : "ideas"}` : "Nothing published"}`);
+      hover(cell, `<b>${fmtDay.format(d)}</b><br>${n ? `${news} news ${news === 1 ? "story" : "stories"} · ${ideas} ${ideas === 1 ? "idea" : "ideas"}${views ? ` · ${views} Long View` : ""}` : "Nothing published"}`);
       cal.appendChild(cell);
     }
     $("#cal-total").textContent = `${total} pieces on ${active} days`;
@@ -413,24 +434,25 @@ footer p { margin: 0; }
   function latest(items) {
     const top = [...items].sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0)).slice(0, 8);
     $("#latest").innerHTML = top.map((it) => {
-      const s = SITES[it.site], what = it.site === "idea" ? it.topic : [it.section, it.places].filter(Boolean).join(" · ");
+      const s = SITES[it.site], what = it.site !== "news" ? it.topic : [it.section, it.places].filter(Boolean).join(" · ");
       return `<li style="--c:${s.colour}"><a href="${esc(it.url)}">
         <span><span class="l-meta">${esc(s.name)}${what ? ` <span>· ${esc(what)}</span>` : ""}</span><span class="l-title">${esc(it.title)}</span></span>
         <span class="l-date">${fmtDay.format(new Date(it.date + "T12:00:00"))}</span></a></li>`;
     }).join("") || `<li><span class="l-date">Nothing to show yet.</span></li>`;
   }
 
-  Promise.all([getJSON(SITES.idea.index), getJSON(SITES.news.index), countItems(SITES.idea.feed), countItems(SITES.news.feed)])
-    .then(([ideas, news, ideaEps, newsEps]) => {
-      ideas.forEach((x) => (x.site = "idea")); news.forEach((x) => (x.site = "news"));
+  Promise.all([getJSON(SITES.idea.index), getJSON(SITES.news.index), countItems(SITES.idea.feed), countItems(SITES.news.feed),
+               getJSON(SITES.view.index), countItems(SITES.view.feed)])
+    .then(([ideas, news, ideaEps, newsEps, views, viewEps]) => {
+      ideas.forEach((x) => (x.site = "idea")); news.forEach((x) => (x.site = "news")); views.forEach((x) => (x.site = "view"));
       const places = new Set(news.flatMap((x) => String(x.places || "").split(",").map((p) => p.trim()).filter(Boolean)));
-      const stats = { ideas: ideas.length, stories: news.length, episodes: ideaEps + newsEps, places: places.size };
+      const stats = { ideas: ideas.length, stories: news.length, episodes: ideaEps + newsEps + viewEps, places: places.size };
       document.querySelectorAll("[data-stat]").forEach((el) => setNum(el, stats[el.dataset.stat] || 0));
       const tally = (arr, key) => arr.reduce((m, x) => ((m[x[key] || "Other"] = (m[x[key] || "Other"] || 0) + 1), m), {});
       bars($("#bars-news"), tally(news, "section"));
       bars($("#bars-ideas"), tally(ideas, "topic"));
-      calendar([...ideas, ...news]);
-      latest([...ideas, ...news]);
+      calendar([...ideas, ...news, ...views]);
+      latest([...ideas, ...news, ...views]);
     });
 })();
 </script>
