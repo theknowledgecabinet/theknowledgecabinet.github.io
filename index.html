@@ -28,6 +28,8 @@
   --idea: #a3446f;
   --news: #1b5e7e;
   --view: #7a5fc0;
+  --sso: #c2571a;
+  --td: #a8701a;
   /* calendar ramp: one hue, light to dark */
   --s0: #ebe6da; --s1: #c9d3e0; --s2: #93a9c6; --s3: #557aa3; --s4: #1f3a5f;
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
@@ -36,13 +38,13 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #15171b; --surface: #1c1f24; --text: #e8e5df; --muted: #a0a6ae; --line: #30343b; --rule: #e8e5df;
-    --ink: #a9c1e2; --idea: #e290b6; --news: #79bde0; --view: #c3b1ff;
+    --ink: #a9c1e2; --idea: #e290b6; --news: #79bde0; --view: #c3b1ff; --sso: #f0a070; --td: #f6c25b;
     --s0: #23262c; --s1: #2b3a4f; --s2: #3e5f86; --s3: #6f93bf; --s4: #b5cbe6;
   }
 }
 :root[data-theme="dark"] {
   --bg: #15171b; --surface: #1c1f24; --text: #e8e5df; --muted: #a0a6ae; --line: #30343b; --rule: #e8e5df;
-  --ink: #a9c1e2; --idea: #e290b6; --news: #79bde0; --view: #c3b1ff;
+  --ink: #a9c1e2; --idea: #e290b6; --news: #79bde0; --view: #c3b1ff; --sso: #f0a070; --td: #f6c25b;
   --s0: #23262c; --s1: #2b3a4f; --s2: #3e5f86; --s3: #6f93bf; --s4: #b5cbe6;
 }
 *, *::before, *::after { box-sizing: border-box; }
@@ -95,7 +97,7 @@ p { margin: 0 0 1em; }
 .fig:nth-child(even) { padding-left: 16px; border-left: 1px solid var(--line); }
 @media (max-width: 819px) { .fig:nth-child(n+3) { border-top: 1px solid var(--line); } }
 @media (min-width: 820px) {
-  .figures { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .figures { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .fig + .fig { padding-left: 20px; border-left: 1px solid var(--line); }
 }
 .fig-num { font: 700 clamp(2.2rem, 5vw, 3rem)/1 var(--serif); font-variant-numeric: lining-nums tabular-nums; }
@@ -219,11 +221,11 @@ footer p { margin: 0; }
       <p>Runs on a schedule. Reads the originals, writes in its own words, picks pictures and draws them when no real photo fits. <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Open source</a>.</p></li>
     <li><span class="num">3</span><span class="label">Local AI</span><h3>Models at home</h3>
       <p>On a machine on the same network, not a cloud service.</p>
-      <p class="models"><b>Qwen</b> writes and checks · <b>Kokoro</b> speaks · <b>bge-m3</b> spots repeats · <b>Qwen-VL</b> checks pictures · <b>Z-Image</b> draws illustrations</p></li>
+      <p class="models"><b>Qwen</b> writes and checks · <b>gpt-oss</b> double-checks the cyber sites · <b>Kokoro</b> speaks · <b>bge-m3</b> spots repeats · <b>Qwen-VL</b> checks pictures · <b>Z-Image</b> draws illustrations</p></li>
     <li><span class="num">4</span><span class="label">GitHub</span><h3>Archive and host</h3>
       <p>Markdown, images and audio in public repositories. GitHub Pages builds the site.</p></li>
     <li><span class="num">5</span><span class="label">Published</span><h3>Read or listen</h3>
-      <p><a href="/daily-ideas/" target="_blank" rel="noopener">Daily Idea</a>, <a href="/hastings-news/" target="_blank" rel="noopener">Hastings Daily</a> and <a href="/long-view/" target="_blank" rel="noopener">The Long View</a>, each with a podcast.</p></li>
+      <p><a href="/daily-ideas/" target="_blank" rel="noopener">Daily Idea</a>, <a href="/hastings-news/" target="_blank" rel="noopener">Hastings Daily</a> and <a href="/long-view/" target="_blank" rel="noopener">The Long View</a>, <a href="/stay-safe-online/" target="_blank" rel="noopener">Stay Safe Online</a> and <a href="/threat-desk/" target="_blank" rel="noopener">Threat Desk</a>. All but Threat Desk come with a podcast.</p></li>
   </ol>
 </header>
 
@@ -232,6 +234,7 @@ footer p { margin: 0; }
     <div class="fig"><div class="fig-num" data-stat="ideas">–</div><div class="fig-label">ideas published</div></div>
     <div class="fig"><div class="fig-num" data-stat="evenings">–</div><div class="fig-label">evening editions</div></div>
     <div class="fig"><div class="fig-num" data-stat="stories">–</div><div class="fig-label">local news stories</div></div>
+    <div class="fig"><div class="fig-num" data-stat="cyber">–</div><div class="fig-label">cyber security stories</div></div>
     <div class="fig"><div class="fig-num" data-stat="episodes">–</div><div class="fig-label">podcast episodes</div></div>
     <div class="fig"><div class="fig-num" data-stat="places">–</div><div class="fig-label">places covered</div></div>
   </div>
@@ -239,8 +242,8 @@ footer p { margin: 0; }
   <section id="sites" aria-labelledby="sites-title">
     <div class="section-head">
       <span class="label">The sites</span>
-      <h2 id="sites-title">Three sites, three very different jobs</h2>
-      <p>One serves up a single idea worth thinking about each morning. One is a local newspaper with three editions a day. And one is a calm evening lesson in the ideas that hold societies together. All are free to read, and all come with a podcast.</p>
+      <h2 id="sites-title">Five sites, five very different jobs</h2>
+      <p>One serves up a single idea worth thinking about each morning. One is a local newspaper with three editions a day. One is a calm evening lesson in the ideas that hold societies together. And two keep watch on cyber security: one in plain English for everyone, one for the people who defend systems. All are free to read.</p>
     </div>
 
     <div class="sites">
@@ -298,6 +301,42 @@ footer p { margin: 0; }
           <a class="textlink" href="/long-view/about/" target="_blank" rel="noopener">How it's made</a>
         </p>
       </article>
+
+      <article class="site" style="--c: var(--sso)">
+        <a class="shot" href="/stay-safe-online/" tabindex="-1" aria-hidden="true" target="_blank" rel="noopener"><img src="assets/stay-safe-online.jpg" width="1100" height="714" alt="" decoding="async"></a>
+        <span class="label">Morning and evening</span>
+        <h3><a href="/stay-safe-online/" target="_blank" rel="noopener">Stay Safe Online</a></h3>
+        <p class="summary">The scams, data breaches and updates that matter to you, explained in plain English, with what to do about each one.</p>
+        <ul class="features">
+          <li>Every story answers three questions: what happened, am I affected, and what should I do.</li>
+          <li>From the NCSC, Ofcom, UK Finance, Get Safe Online, Which? and named security news sources, kept to what matters to UK readers.</li>
+          <li>Written by one model and checked claim by claim by a different one; anything the sources only suggest stays a "may".</li>
+          <li>A picture for every story, drawn at home in a warm illustrated style and labelled as AI.</li>
+          <li>An evening podcast of the day's stories.</li>
+        </ul>
+        <p class="links">
+          <a class="button" href="/stay-safe-online/" target="_blank" rel="noopener">Visit Stay Safe Online</a>
+          <a class="textlink" href="/stay-safe-online/podcast/" target="_blank" rel="noopener">Podcast</a>
+          <a class="textlink" href="/stay-safe-online/about/" target="_blank" rel="noopener">How it works</a>
+        </p>
+      </article>
+
+      <article class="site" style="--c: var(--td)">
+        <a class="shot" href="/threat-desk/" tabindex="-1" aria-hidden="true" target="_blank" rel="noopener"><img src="assets/threat-desk.jpg" width="1100" height="714" alt="" decoding="async"></a>
+        <span class="label">Morning and evening</span>
+        <h3><a href="/threat-desk/" target="_blank" rel="noopener">Threat Desk</a></h3>
+        <p class="summary">Vulnerabilities, advisories and threat activity for the people who defend systems, in the style of a security operations desk.</p>
+        <ul class="features">
+          <li>Severity, "exploited" and "patch available" at a glance, with CVE numbers and affected versions checked against the official NVD and CISA records.</li>
+          <li>From CISA, the NCSC, vendor advisories and named security news sources; claims by criminal groups are reported as claims.</li>
+          <li>Every figure, version and CVE number must appear in the sources, and a second model checks each sentence.</li>
+          <li>A fact card for each vulnerability, or an illustration drawn at home and labelled as AI.</li>
+        </ul>
+        <p class="links">
+          <a class="button" href="/threat-desk/" target="_blank" rel="noopener">Visit Threat Desk</a>
+          <a class="textlink" href="/threat-desk/about/" target="_blank" rel="noopener">How it works</a>
+        </p>
+      </article>
     </div>
   </section>
 
@@ -310,7 +349,7 @@ footer p { margin: 0; }
 
     <div class="panel">
       <h3>Publishing calendar</h3>
-      <p class="sub">Pieces published each day across all three sites, since the first one went out.</p>
+      <p class="sub">Pieces published each day across all the sites, since the first one went out.</p>
       <div class="cal-scroll"><div class="cal-grid"><div class="cal-days" aria-hidden="true"><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span><span>Sun</span></div><div class="cal" id="cal" role="img" aria-label="Pieces published per day"></div></div></div>
       <div class="cal-foot">
         <span id="cal-total"></span>
@@ -334,11 +373,21 @@ footer p { margin: 0; }
         <p class="sub">Evening editions per theme.</p>
         <div class="bars" id="bars-view"></div>
       </div>
+      <div class="panel" style="--c: var(--sso)">
+        <h3>Stay Safe Online by section</h3>
+        <p class="sub">Stories published per section.</p>
+        <div class="bars" id="bars-sso"></div>
+      </div>
+      <div class="panel" style="--c: var(--td)">
+        <h3>Threat Desk by section</h3>
+        <p class="sub">Stories published per section.</p>
+        <div class="bars" id="bars-td"></div>
+      </div>
     </div>
 
     <div class="panel">
       <h3>Latest</h3>
-      <p class="sub">The newest pieces from all three sites.</p>
+      <p class="sub">The newest pieces from all the sites.</p>
       <ul class="latest" id="latest"><li><span class="l-date">Loading…</span></li></ul>
     </div>
   </section>
@@ -374,6 +423,8 @@ footer p { margin: 0; }
     idea: { name: "Daily Idea", index: "/daily-ideas/search.json", feed: "/daily-ideas/feed.xml", colour: "var(--idea)" },
     news: { name: "Hastings Daily", index: "/hastings-news/search.json", feed: "/hastings-news/podcast.xml", colour: "var(--news)" },
     view: { name: "The Long View", index: "/long-view/search.json", feed: "/long-view/feed.xml", colour: "var(--view)" },
+    sso: { name: "Stay Safe Online", index: "/stay-safe-online/search.json", feed: "/stay-safe-online/podcast.xml", colour: "var(--sso)" },
+    td: { name: "Threat Desk", index: "/threat-desk/search.json", colour: "var(--td)" },
   };
   const $ = (s) => document.querySelector(s);
   const tip = $("#tip");
@@ -423,9 +474,10 @@ footer p { margin: 0; }
       const cell = document.createElement("div");
       cell.dataset.l = n ? String(Math.min(4, Math.ceil((n / max) * 4))) : "0";
       cell.tabIndex = n ? 0 : -1;
-      const ideas = list.filter((x) => x.site === "idea").length, views = list.filter((x) => x.site === "view").length, news = n - ideas - views;
+      const ideas = list.filter((x) => x.site === "idea").length, views = list.filter((x) => x.site === "view").length,
+            cyber = list.filter((x) => x.site === "sso" || x.site === "td").length, news = n - ideas - views - cyber;
       cell.setAttribute("aria-label", `${fmtDay.format(d)}: ${n} published`);
-      hover(cell, `<b>${fmtDay.format(d)}</b><br>${n ? `${news} news ${news === 1 ? "story" : "stories"} · ${ideas} ${ideas === 1 ? "idea" : "ideas"}${views ? ` · ${views} Long View` : ""}` : "Nothing published"}`);
+      hover(cell, `<b>${fmtDay.format(d)}</b><br>${n ? `${news} news ${news === 1 ? "story" : "stories"} · ${ideas} ${ideas === 1 ? "idea" : "ideas"}${views ? ` · ${views} Long View` : ""}${cyber ? ` · ${cyber} cyber` : ""}` : "Nothing published"}`);
       cal.appendChild(cell);
     }
     $("#cal-total").textContent = `${total} pieces on ${active} days`;
@@ -449,7 +501,8 @@ footer p { margin: 0; }
   function latest(items) {
     const top = [...items].sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0)).slice(0, 8);
     $("#latest").innerHTML = top.map((it) => {
-      const s = SITES[it.site], what = it.site !== "news" ? it.topic : [it.section, it.places].filter(Boolean).join(" · ");
+      const s = SITES[it.site], what = it.site === "news" ? [it.section, it.places].filter(Boolean).join(" · ")
+        : (it.site === "sso" || it.site === "td") ? it.section : it.topic;
       return `<li style="--c:${s.colour}"><a href="${esc(it.url)}" target="_blank" rel="noopener">
         <span><span class="l-meta">${esc(s.name)}${what ? ` <span>· ${esc(what)}</span>` : ""}</span><span class="l-title">${esc(it.title)}</span></span>
         <span class="l-date">${fmtDay.format(new Date(it.date + "T12:00:00"))}</span></a></li>`;
@@ -457,18 +510,23 @@ footer p { margin: 0; }
   }
 
   Promise.all([getJSON(SITES.idea.index), getJSON(SITES.news.index), countItems(SITES.idea.feed), countItems(SITES.news.feed),
-               getJSON(SITES.view.index), countItems(SITES.view.feed)])
-    .then(([ideas, news, ideaEps, newsEps, views, viewEps]) => {
+               getJSON(SITES.view.index), countItems(SITES.view.feed),
+               getJSON(SITES.sso.index), countItems(SITES.sso.feed), getJSON(SITES.td.index)])
+    .then(([ideas, news, ideaEps, newsEps, views, viewEps, sso, ssoEps, td]) => {
       ideas.forEach((x) => (x.site = "idea")); news.forEach((x) => (x.site = "news")); views.forEach((x) => (x.site = "view"));
+      sso.forEach((x) => (x.site = "sso")); td.forEach((x) => (x.site = "td"));
       const places = new Set(news.flatMap((x) => String(x.places || "").split(",").map((p) => p.trim()).filter(Boolean)));
-      const stats = { ideas: ideas.length, evenings: views.length, stories: news.length, episodes: ideaEps + newsEps + viewEps, places: places.size };
+      const stats = { ideas: ideas.length, evenings: views.length, stories: news.length, cyber: sso.length + td.length,
+                      episodes: ideaEps + newsEps + viewEps + ssoEps, places: places.size };
       document.querySelectorAll("[data-stat]").forEach((el) => setNum(el, stats[el.dataset.stat] || 0));
       const tally = (arr, key) => arr.reduce((m, x) => ((m[x[key] || "Other"] = (m[x[key] || "Other"] || 0) + 1), m), {});
       bars($("#bars-news"), tally(news, "section"));
       bars($("#bars-ideas"), tally(ideas, "topic"));
       bars($("#bars-view"), tally(views, "topic"));
-      calendar([...ideas, ...news, ...views]);
-      latest([...ideas, ...news, ...views]);
+      bars($("#bars-sso"), tally(sso, "section"));
+      bars($("#bars-td"), tally(td, "section"));
+      calendar([...ideas, ...news, ...views, ...sso, ...td]);
+      latest([...ideas, ...news, ...views, ...sso, ...td]);
     });
 })();
 </script>

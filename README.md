@@ -7,6 +7,8 @@ GitHub as both the archive and the host.
 - [Daily Idea](https://theknowledgecabinet.github.io/daily-ideas/): one good idea a day, to read or to listen to.
 - [Hastings Daily](https://theknowledgecabinet.github.io/hastings-news/): local news for Hastings, St Leonards, Rye, Bexhill and Battle.
 - [The Long View](https://theknowledgecabinet.github.io/long-view/): a calm five minutes with a big idea, every evening.
+- [Stay Safe Online](https://theknowledgecabinet.github.io/stay-safe-online/): scams, breaches and updates in plain English, with what to do.
+- [Threat Desk](https://theknowledgecabinet.github.io/threat-desk/): vulnerabilities, advisories and threat activity for defenders.
 
 A single static page. The numbers, calendar, charts and latest list are read from
 each site's `search.json` and podcast feed when the page loads.
