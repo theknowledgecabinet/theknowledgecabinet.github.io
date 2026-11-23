@@ -5,7 +5,8 @@ sites written by a Hermes agent working with AI models that run at home, with
 GitHub as both the archive and the host.
 
 - [Daily Idea](https://theknowledgecabinet.github.io/daily-ideas/): one good idea a day, to read or to listen to.
-- [Hastings Daily](https://theknowledgecabinet.github.io/hastings-news/): local news for Hastings, St Leonards, Rye, Bexhill and Battle.
+- [Hastings Daily](https://theknowledgecabinet.github.io/hastings-news/): local news for Hastings and St Leonards.
+- [Rother Daily](https://theknowledgecabinet.github.io/rother-daily/): its sister paper, local news for Bexhill, Battle, Rye and the Rother villages.
 - [The Long View](https://theknowledgecabinet.github.io/long-view/): a calm five minutes with a big idea, every evening.
 - [Stay Safe Online](https://theknowledgecabinet.github.io/stay-safe-online/): scams, breaches and updates in plain English, with what to do.
 - [Threat Desk](https://theknowledgecabinet.github.io/threat-desk/): vulnerabilities, advisories and threat activity for defenders.
