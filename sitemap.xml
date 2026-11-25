@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://theknowledgecabinet.github.io/</loc></url>
-<url><loc>https://theknowledgecabinet.github.io/privacy/</loc></url>
-<url><loc>https://theknowledgecabinet.github.io/terms/</loc></url>
-</urlset>
+<!-- Sitemap index: one per site. Each site keeps its own sitemap up to date when it publishes. -->
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<sitemap><loc>https://theknowledgecabinet.github.io/sitemap-pages.xml</loc></sitemap>
+<sitemap><loc>https://theknowledgecabinet.github.io/hastings-news/sitemap.xml</loc></sitemap>
+<sitemap><loc>https://theknowledgecabinet.github.io/rother-daily/sitemap.xml</loc></sitemap>
+<sitemap><loc>https://theknowledgecabinet.github.io/stay-safe-online/sitemap.xml</loc></sitemap>
+<sitemap><loc>https://theknowledgecabinet.github.io/threat-desk/sitemap.xml</loc></sitemap>
+</sitemapindex>
