@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://theknowledgecabinet.github.io/hastings-news/sitemap.xml
+Sitemap: https://theknowledgecabinet.github.io/rother-daily/sitemap.xml
